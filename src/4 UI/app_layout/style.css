@@ -1,0 +1,10 @@
+.app_layout {
+	padding: 0 1rem;
+	max-width: 1270px;
+	width: 100%;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+}
