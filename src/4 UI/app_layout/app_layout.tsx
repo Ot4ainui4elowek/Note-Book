@@ -4,7 +4,7 @@ const AppLayout = ({
 	children,
 	padding,
 }: {
-	children: React.ReactNode
+	children?: React.ReactNode
 	padding?: string
 }) => {
 	return (

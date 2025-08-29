@@ -1,3 +1,4 @@
+import React from 'react'
 import PageLinkButton from '../../4 UI/page_link_button/page_link_button'
 import type { IPageLinkButton } from '../../4 UI/page_link_button/page_link_button_interface'
 import './style.css'
@@ -11,4 +12,4 @@ const PageLinksListView = ({ links }: { links: IPageLinkButton[] }) => {
 		</div>
 	)
 }
-export default PageLinksListView
+export default React.memo(PageLinksListView)

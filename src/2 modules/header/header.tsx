@@ -1,6 +1,7 @@
+import React from 'react'
 import AppLayout from '../../4 UI/app_layout/app_layout'
 import './style.css'
-const Header = ({ children }: { children: React.ReactNode }) => {
+const Header = ({ children }: { children?: React.ReactNode }) => {
 	return (
 		<header className='header_layout'>
 			<AppLayout padding='0.5rem 1rem'>
@@ -13,4 +14,4 @@ const Header = ({ children }: { children: React.ReactNode }) => {
 	)
 }
 
-export default Header
+export default React.memo(Header)

@@ -1,41 +1,43 @@
+import { useCallback } from 'react'
+import { Provider } from 'react-redux'
 import { Route, Routes, useLocation } from 'react-router'
-import AddNote from '../1 pages/Add_Notes'
-import Notes from '../1 pages/Notes'
+import AddNotePage from '../1 pages/add_note_page/Add_Notes'
+import Notes from '../1 pages/note_page/Notes'
 import Header from '../2 modules/header/header'
-import PageLinksListView from '../3 components/page_links_list_view/page_links_list_view'
 import AppLayout from '../4 UI/app_layout/app_layout'
+import { createStore } from '../store/app_store'
 import './router.css'
 
 function Router() {
 	const { pathname } = useLocation()
 
+	const store = useCallback(() => createStore(), [])
+	const getPageName = useCallback(() => {
+		switch (pathname) {
+			case '/':
+				return 'Notes'
+			case '/add':
+				return 'Add Note'
+			default:
+				return 'Unknown'
+		}
+	}, [pathname])
 	return (
-		<div>
-			<Header>
-				<PageLinksListView
-					links={[
-						{
-							to: '/',
-							label: 'Notes',
-							className: pathname == '/' ? 'active' : '',
-						},
-						{
-							to: '/add',
-							label: 'Add Notes',
-							className: pathname == '/add' ? 'active' : '',
-						},
-					]}
-				/>
-			</Header>
-			<AppLayout padding='1rem'>
-				<main>
-					<Routes>
-						<Route path='/' element={<Notes />} />
-						<Route path='/add' element={<AddNote />} />
-					</Routes>
-				</main>
-			</AppLayout>
-		</div>
+		<Provider store={store()}>
+			<div>
+				<Header>
+					<h2 style={{ color: 'white' }}>{getPageName()}</h2>
+				</Header>
+				<AppLayout padding='1rem'>
+					<main>
+						<Routes>
+							<Route path='/' element={<Notes />} />
+							<Route path='/add' element={<AddNotePage />} />
+						</Routes>
+					</main>
+				</AppLayout>
+			</div>
+		</Provider>
 	)
 }
 

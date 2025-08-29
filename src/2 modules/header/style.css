@@ -12,7 +12,13 @@
 }
 .header_title {
 	display: inline-block;
+	color: #fff;
 }
 .header_layout {
-	background-color: #b883ff;
+	background-color: var(--primary);
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	filter: drop-shadow(0 0rem 1rem #ffffff);
 }
