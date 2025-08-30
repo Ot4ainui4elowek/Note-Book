@@ -1,19 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router'
-import type { IRoute } from '../routes'
 
-const RouteButton = ({
-	route,
-	className,
-	children,
-}: {
-	route: IRoute
+interface IRouteButton extends React.ComponentPropsWithoutRef<typeof Link> {
 	className?: string
 	children?: React.ReactNode
-}) => {
+	onClick?: (e?: React.MouseEvent<HTMLAnchorElement>) => void
+}
+
+const RouteButton = (props: IRouteButton) => {
 	return (
-		<Link className={className} to={route.to}>
-			{children}
+		<Link {...props} onClick={props.onClick}>
+			{props.children}
 		</Link>
 	)
 }

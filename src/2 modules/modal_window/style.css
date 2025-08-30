@@ -1,0 +1,35 @@
+.modal_window {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: calc(100% - 2rem);
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	padding: 1rem;
+}
+
+.modal_content {
+	background-color: white;
+
+	border-radius: 5px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	width: 100%;
+	border: 2px solid #000;
+	filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 1));
+}
+
+.modal_title {
+	border-bottom: 2px solid #000;
+	background-color: var(--primary);
+	padding: 0.5rem 1rem;
+	color: #fff;
+}
+
+.modal_content_body {
+	padding: 1rem;
+}

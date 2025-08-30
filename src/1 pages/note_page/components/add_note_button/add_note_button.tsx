@@ -6,7 +6,7 @@ const AddNoteButton = () => {
 	return (
 		<RouteButton
 			className='add_note_button_bottom'
-			route={AppRouter.addNotePage}
+			to={AppRouter.addNotePage.to}
 		>
 			<AppLayout>
 				<button className='app_button '>Add Note +</button>
