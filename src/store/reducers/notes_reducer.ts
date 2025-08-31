@@ -19,13 +19,15 @@ const initialState: NoteState = {
 	status: NoteStatus.Idle,
 }
 
+const noteLocalAPI = new NoteLocalStorageAPI()
+
 const NotesReducer = createSlice({
 	name: 'notes',
 	initialState: initialState,
 	reducers: {
 		getNotes: state => {
 			state.status = NoteStatus.Loading
-			state.data = NoteLocalStorageAPI.getNotes()
+			state.data = noteLocalAPI.getNotes()
 			console.log('flag:', state.data)
 			state.status = NoteStatus.Idle
 		},
@@ -33,16 +35,16 @@ const NotesReducer = createSlice({
 			const index = state.data.findIndex(note => note.id === action.payload.id)
 			if (index !== -1) {
 				state.data[index] = action.payload
-				NoteLocalStorageAPI.updateNote(action.payload)
+				noteLocalAPI.updateNote(action.payload)
 			}
 		},
 		addNote: (state, action: { payload: INoteCreate }) => {
 			const newNote: INote = { id: Date.now().toString(), ...action.payload }
 			state.data.push(newNote)
-			NoteLocalStorageAPI.addNote(newNote)
+			noteLocalAPI.addNote(newNote)
 		},
 		deleteNote: (state, action: { payload: { id: string } }) => {
-			NoteLocalStorageAPI.deleteNote(action.payload.id)
+			noteLocalAPI.deleteNote(action.payload.id)
 			state.data = state.data.filter(note => note.id !== action.payload.id)
 		},
 	},
